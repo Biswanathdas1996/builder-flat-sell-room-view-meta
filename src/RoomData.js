@@ -78,5 +78,7 @@ export const roomData = () => {
   const findRoom = Data.find((val) => val.room == roomNo);
   if (findRoom) {
     return findRoom;
+  } else if (roomNo % 2 === 0) {
+    return Data[1];
   } else return Data[0];
 };
