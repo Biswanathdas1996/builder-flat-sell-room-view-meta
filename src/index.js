@@ -170,12 +170,12 @@ function init() {
   // toilet basin
   gltfObject([6, 6, 6], [-240, -30, 260], toilet, scene);
   // toilet basin
-  gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
+  // gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
   // room basin
-  gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
+  // gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
 
   // toilet Door
-  gltfObject([9, 9, 9], [-260, -30, 90], toiletDoor, scene);
+  // gltfObject([9, 9, 9], [-260, -30, 90], toiletDoor, scene);
 
   play();
 }
@@ -201,8 +201,8 @@ function update() {
     if (controls.isLocked === true) {
       const delta = (time - prevTime) / 1000;
       //sets speed values along the axis of which the camera is directed
-      velocity.x -= velocity.x * 2.0 * delta;
-      velocity.z -= velocity.z * 2.0 * delta;
+      velocity.x -= velocity.x * 3.0 * delta;
+      velocity.z -= velocity.z * 3.0 * delta;
       velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
       direction.z = Number(moveForward) - Number(moveBackward);
       direction.x = Number(moveRight) - Number(moveLeft);
