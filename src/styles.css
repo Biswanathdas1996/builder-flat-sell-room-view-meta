@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  /* background-color: rgb(255, 255, 255); */
+  background-image: url(img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg);
+  color: rgb(20, 17, 11);
+  font-family:Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  overscroll-behavior: none;
+}
+
+a {
+  color: #ff0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+canvas {
+  display: block;
+}
+
+
+
+a,
+button,
+input,
+select {
+  pointer-events: auto;
+}
+
+.dg.ac {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 2 !important; /* TODO Solve this in HTML */
+}
+
+#overlay {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background: rgba(0, 0, 0, 0.7);
+   */
+ 
+}
+
+#overlay button {
+  background: #0865b6;
+  border:khaki;
+  color: #f4eeee;
+  padding: 16px 20px;
+  cursor: pointer;
+  width: 200px;
+  height: 50px;
+ 
+}
+
+#overlay .intro{
+color: rgb(46, 55, 100);
+text-align: center;
+padding: 16px;
+font-size: 17px;
+font-weight: 800;
+}
+
+#overlay .title{
+  color: rgb(248, 169, 42); 
+  text-align: center;
+  padding: 16px;
+  font-size: 50px;
+  font-weight:850;
+ }
+
+#notSupported {
+  width: 50%;
+  margin: auto;
+  background-color: #f00;
+  margin-top: 20px;
+  padding: 10px;
+}
