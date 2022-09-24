@@ -12,7 +12,8 @@
     "noisejs": "2.1.0",
     "three": "0.120.1",
     "three-pointer-lock-controls": "1.0.0",
-    "tone": "14.7.77"
+    "tone": "14.7.77",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
     "@babel/core": "7.2.0",

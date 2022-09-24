@@ -2,8 +2,6 @@ import * as THREE from "three";
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls.js";
 import "./styles.css";
 import toilet from "./model/toilet.gltf";
-import basin from "./model/basin.gltf";
-import toiletDoor from "./model/toiletDoor.gltf";
 import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
 import { wall } from "./components/Walls";
 import { box } from "./components/Box";
@@ -35,7 +33,7 @@ document.addEventListener("click", function (e) {
   console.log("click", e);
 });
 
-function init() {
+async function init() {
   const {
     topCilling,
     toiletWall,
@@ -43,10 +41,11 @@ function init() {
     entranceDoorImage,
     frontWindow,
     windowImageBack,
-    sideWall,
-    rightsideWall,
+    frontWall,
+    backWall,
+    rightWall,
     floorImg,
-  } = roomData();
+  } = await roomData();
 
   let overlay = document.getElementById("overlay");
   overlay.remove();
@@ -143,16 +142,16 @@ function init() {
   scene.add(wall([650, 2, 650], [0, 220, 0], topCilling));
 
   // Front wall
-  scene.add(wall([650, 280, 8], [0, 100, -325], sideWall));
+  scene.add(wall([650, 280, 8], [0, 100, -325], frontWall));
 
   // Back wall
-  scene.add(wall([650, 280, 8], [0, 100, 325], sideWall));
+  scene.add(wall([650, 280, 8], [0, 100, 325], backWall));
 
   // Left wall
   scene.add(wall([8, 280, 650], [-325, 100, 0], leftWall));
 
   // Right wall
-  scene.add(wall([8, 280, 650], [325, 100, 0], rightsideWall));
+  scene.add(wall([8, 280, 650], [325, 100, 0], rightWall));
 
   // front door
   scene.add(box([250, 180, 15], [150, 60, -322], entranceDoorImage));
