@@ -7,7 +7,15 @@ import { wall } from "./components/Walls";
 import { box } from "./components/Box";
 import { floor } from "./components/Floor";
 import { gltfObject } from "./components/GltfObject";
-import { roomData } from "./RoomData";
+import { roomData, ifFurnished } from "./RoomData";
+
+import bedWood from "./img/763c9e84c922b38f71f33a37b6f2dc78.jpg";
+import bedSheet from "./img/White-Background-Images-pics-hd-for-download-scaled.jpg";
+import friz from "./img/GL-D221ABCY-Refrigerators-Front-View-D-01-VF.jpg";
+import ac from "./img/PS-Q13MNZF-air-conditioner-front-view-D-1.jpg";
+import almirah from "./img/ndf-wooden-almirah-design.jpg";
+import basin from "./model/basin.gltf";
+import furnishedWall from "./img/floor2.jpg";
 
 document.body.appendChild(VRButton.createButton(renderer));
 // console.log("----->renderer", renderer);
@@ -46,6 +54,8 @@ async function init() {
     rightWall,
     floorImg,
   } = await roomData();
+
+  let furnished = await ifFurnished();
 
   let overlay = document.getElementById("overlay");
   overlay.remove();
@@ -140,41 +150,55 @@ async function init() {
 
   // cilling
   scene.add(wall([650, 2, 650], [0, 220, 0], topCilling));
-
   // Front wall
   scene.add(wall([650, 280, 8], [0, 100, -325], frontWall));
-
   // Back wall
   scene.add(wall([650, 280, 8], [0, 100, 325], backWall));
 
   // Left wall
   scene.add(wall([8, 280, 650], [-325, 100, 0], leftWall));
-
   // Right wall
   scene.add(wall([8, 280, 650], [325, 100, 0], rightWall));
-
   // front door
   scene.add(box([250, 180, 15], [150, 60, -322], entranceDoorImage));
-
   // front window
   scene.add(box([150, 130, 15], [-150, 60, -322], frontWindow));
-
   // Back window
-  scene.add(box([150, 150, 15], [200, 100, 322], windowImageBack));
-  scene.add(box([100, 150, 15], [-250, 100, 322], windowImageBack));
-
+  scene.add(box([180, 100, 15], [200, 80, 322], windowImageBack));
+  scene.add(box([100, 120, 15], [-250, 100, 322], windowImageBack));
   // Left partition wall
   scene.add(wall([8, 280, 250], [-180, 100, 200], toiletWall));
-  scene.add(floor(floorImg));
-  // toilet basin
-  gltfObject([6, 6, 6], [-240, -30, 260], toilet, scene);
-  // toilet basin
-  // gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
-  // room basin
-  // gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
 
-  // toilet Door
-  // gltfObject([9, 9, 9], [-260, -30, 90], toiletDoor, scene);
+  scene.add(floor(floorImg));
+
+  // toilet
+  gltfObject([6, 6, 6], [-240, -30, 260], toilet, scene);
+
+  if (furnished) {
+    // ----------------------bed--------------------
+    scene.add(wall([95, 15, 250], [200, 0, 160], bedWood));
+    scene.add(wall([95, 5, 250], [200, 10, 160], bedSheet));
+    scene.add(wall([100, 100, 15], [200, -20, 275], bedWood));
+    scene.add(wall([100, 70, 15], [200, -20, 40], bedWood));
+    // ----------------------Friz--------------------
+    scene.add(wall([50, 120, 30], [70, 35, 290], friz));
+    // ----------------------AC--------------------
+    scene.add(wall([100, 40, 20], [200, 180, 310], ac));
+    // ------------------------almirah ---------------------
+    scene.add(wall([30, 220, 130], [-140, 45, 220], almirah));
+    // middle wall
+    scene.add(wall([210, 280, 8], [220, 100, 0], furnishedWall));
+    scene.add(wall([210, 280, 8], [-80, 100, 0], furnishedWall));
+    scene.add(wall([90, 100, 8], [70, 170, 0], furnishedWall));
+    scene.add(wall([8, 100, 80], [-180, 170, 40], furnishedWall));
+    // toilet top
+    scene.add(wall([150, 100, 8], [-250, 170, 80], furnishedWall));
+    scene.add(wall([60, 240, 8], [-210, 0, 80], furnishedWall));
+    // toilet basin
+    gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
+    // room basin
+    gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
+  }
 
   play();
 }

@@ -7,15 +7,17 @@ import ADDRESS from "./Blockchain/Addess.json";
 var InfuraNodeURL = `https://rinkeby.infura.io/v3/24022fda545f41beb59334bdbaf3ef32`;
 var WalletPrivateKey =
   "33e8389993eea0488d813b34ee8d8d84f74f204c17b95896e9380afc6a514dc7";
+
 const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
 const signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
 web3.eth.accounts.wallet.add(signer);
 const contract = new web3.eth.Contract(ABI, ADDRESS);
 
+console.log("-------------signer-->", signer);
 const getTokenUri = async (tokenId) => {
   const response = await contract.methods
     .tokenURI(tokenId)
-    .call({ from: signer.address });
+    .call({ from: signer?.address });
   console.log(response);
   return response;
 };
@@ -35,12 +37,10 @@ const getRoomNo = () => {
     while ((match = search.exec(query)))
       urlParams[decode(match[1])] = decode(match[2]);
   })();
-
   return urlParams?.room;
 };
 
-export const roomData = async () => {
-  const roomNo = getRoomNo();
+const getDataFromBlockchain = async (roomNo) => {
   const tokenUri = await getTokenUri(roomNo);
   console.log("---tokenUri->", tokenUri);
   var requestOptions = {
@@ -51,8 +51,12 @@ export const roomData = async () => {
     .then((response) => response.json())
     .then((result) => result)
     .catch((error) => error);
-  console.log("---tokenData->", tokenData?.metaverceData);
+  return tokenData;
+};
 
+export const roomData = async () => {
+  const roomNo = getRoomNo();
+  const tokenData = await getDataFromBlockchain(roomNo);
   const roomUiData = {
     topCilling: imagesData.find(
       (data) => data.name === tokenData?.metaverceData?.topCilling
@@ -87,4 +91,10 @@ export const roomData = async () => {
   };
 
   return roomUiData;
+};
+
+export const ifFurnished = async () => {
+  const roomNo = getRoomNo();
+  const tokenData = await getDataFromBlockchain(roomNo);
+  return tokenData?.metaverceData?.furnished;
 };
