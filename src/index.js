@@ -174,18 +174,43 @@ async function init() {
   // toilet
   gltfObject([6, 6, 6], [-240, -30, 260], toilet, scene);
 
-  if (furnished) {
-    // ----------------------bed--------------------
+  console.log("----->appliances", furnished?.appliances);
+  const appliances = furnished?.appliances;
+
+  // ----------------------bed--------------------
+  if (appliances.includes("wooden_bed")) {
     scene.add(wall([95, 15, 250], [200, 0, 160], bedWood));
     scene.add(wall([95, 5, 250], [200, 10, 160], bedSheet));
     scene.add(wall([100, 100, 15], [200, -20, 275], bedWood));
     scene.add(wall([100, 70, 15], [200, -20, 40], bedWood));
-    // ----------------------Friz--------------------
+  }
+
+  // ----------------------Friz--------------------
+  if (appliances.includes("refrigerator")) {
     scene.add(wall([50, 120, 30], [70, 35, 290], friz));
-    // ----------------------AC--------------------
+  }
+
+  // ----------------------AC--------------------
+  if (appliances.includes("ac")) {
     scene.add(wall([100, 40, 20], [200, 180, 310], ac));
-    // ------------------------almirah ---------------------
+  }
+
+  // ------------------------almirah ---------------------
+  if (appliances.includes("almirah")) {
     scene.add(wall([30, 220, 130], [-140, 45, 220], almirah));
+  }
+
+  // toilet basin
+  if (appliances.includes("toilet_basins")) {
+    gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
+  }
+
+  // room basin
+  if (appliances.includes("bedroom_basins")) {
+    gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
+  }
+
+  if (furnished?.furnished) {
     // middle wall
     scene.add(wall([210, 280, 8], [220, 100, 0], furnishedWall));
     scene.add(wall([210, 280, 8], [-80, 100, 0], furnishedWall));
@@ -194,10 +219,6 @@ async function init() {
     // toilet top
     scene.add(wall([150, 100, 8], [-250, 170, 80], furnishedWall));
     scene.add(wall([60, 240, 8], [-210, 0, 80], furnishedWall));
-    // toilet basin
-    gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
-    // room basin
-    gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
   }
 
   play();

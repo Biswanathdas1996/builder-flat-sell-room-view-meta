@@ -96,5 +96,8 @@ export const roomData = async () => {
 export const ifFurnished = async () => {
   const roomNo = getRoomNo();
   const tokenData = await getDataFromBlockchain(roomNo);
-  return tokenData?.metaverceData?.furnished;
+  return {
+    furnished: tokenData?.metaverceData?.furnished,
+    appliances: tokenData?.metaverceData?.appliances,
+  };
 };
