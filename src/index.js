@@ -16,6 +16,7 @@ import ac from "./img/PS-Q13MNZF-air-conditioner-front-view-D-1.jpg";
 import almirah from "./img/ndf-wooden-almirah-design.jpg";
 import basin from "./model/basin.gltf";
 import furnishedWall from "./img/floor2.jpg";
+import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
 
 document.body.appendChild(VRButton.createButton(renderer));
 // console.log("----->renderer", renderer);
@@ -149,7 +150,8 @@ async function init() {
   });
 
   // cilling
-  scene.add(wall([650, 2, 650], [0, 220, 0], topCilling));
+  scene.add(wall([650, 2, 650], [0, 220, 0], falseCilling));
+  scene.add(wall([500, 20, 320], [70, 210, 160], topCilling));
   // Front wall
   scene.add(wall([650, 280, 8], [0, 100, -325], frontWall));
   // Back wall
@@ -178,7 +180,7 @@ async function init() {
   const appliances = furnished?.appliances;
 
   // ----------------------bed--------------------
-  if (appliances.includes("wooden_bed")) {
+  if (appliances?.includes("wooden_bed")) {
     scene.add(wall([95, 15, 250], [200, 0, 160], bedWood));
     scene.add(wall([95, 5, 250], [200, 10, 160], bedSheet));
     scene.add(wall([100, 100, 15], [200, -20, 275], bedWood));
@@ -186,27 +188,27 @@ async function init() {
   }
 
   // ----------------------Friz--------------------
-  if (appliances.includes("refrigerator")) {
+  if (appliances?.includes("refrigerator")) {
     scene.add(wall([50, 120, 30], [70, 35, 290], friz));
   }
 
   // ----------------------AC--------------------
-  if (appliances.includes("ac")) {
+  if (appliances?.includes("ac")) {
     scene.add(wall([100, 40, 20], [200, 180, 310], ac));
   }
 
   // ------------------------almirah ---------------------
-  if (appliances.includes("almirah")) {
+  if (appliances?.includes("almirah")) {
     scene.add(wall([30, 220, 130], [-140, 45, 220], almirah));
   }
 
   // toilet basin
-  if (appliances.includes("toilet_basins")) {
+  if (appliances?.includes("toilet_basins")) {
     gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
   }
 
   // room basin
-  if (appliances.includes("bedroom_basins")) {
+  if (appliances?.includes("bedroom_basins")) {
     gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
   }
 
