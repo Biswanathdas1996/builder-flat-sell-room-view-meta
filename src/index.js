@@ -19,8 +19,7 @@ import furnishedWall from "./img/floor2.jpg";
 import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
 
 document.body.appendChild(VRButton.createButton(renderer));
-// console.log("----->renderer", renderer);
-// renderer.xr.enabled = true;
+console.log("----->renderer", renderer);
 
 let controls;
 let moveForward = false;
@@ -87,6 +86,7 @@ async function init() {
   camera.position.y = 150;
   camera.position.z = -60;
   renderer = new THREE.WebGLRenderer({ antialias: true });
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
   controls = new PointerLockControls(camera, renderer.domElement);
@@ -228,22 +228,7 @@ async function init() {
 
 // simple render function
 function render() {
-  const manager = new THREE.LoadingManager();
-  manager.onLoad = function () {
-    renderer.render(scene, camera);
-  };
-
-  manager.onProgress = function (url, itemsLoaded, itemsTotal) {
-    console.log(
-      "Loading file: " +
-        url +
-        ".\nLoaded " +
-        itemsLoaded +
-        " of " +
-        itemsTotal +
-        " files."
-    );
-  };
+  renderer.render(scene, camera);
 }
 
 function play() {
