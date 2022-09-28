@@ -228,7 +228,22 @@ async function init() {
 
 // simple render function
 function render() {
-  renderer.render(scene, camera);
+  const manager = new THREE.LoadingManager();
+  manager.onLoad = function () {
+    renderer.render(scene, camera);
+  };
+
+  manager.onProgress = function (url, itemsLoaded, itemsTotal) {
+    console.log(
+      "Loading file: " +
+        url +
+        ".\nLoaded " +
+        itemsLoaded +
+        " of " +
+        itemsTotal +
+        " files."
+    );
+  };
 }
 
 function play() {
