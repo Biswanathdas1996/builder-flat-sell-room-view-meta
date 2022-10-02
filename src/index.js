@@ -179,7 +179,7 @@ async function init() {
   const appliances = furnished?.appliances;
 
   // ----------------------bed--------------------
-  if (appliances?.includes("wooden_bed")) {
+  if (bedWood) {
     scene.add(wall([95, 15, 250], [200, 0, 160], bedWood));
     scene.add(wall([95, 5, 250], [200, 10, 160], bedSheet));
     scene.add(wall([100, 100, 15], [200, -20, 275], bedWood));
