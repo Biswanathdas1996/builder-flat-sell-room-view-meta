@@ -43,6 +43,23 @@ import sideWall2 from "./img/grey-grainy-wall-texture-monochromatic-plaster-brig
 import marble from "./img/marble.jpg";
 import marble2 from "./img/5-things-to-keep-in-mind-while-choosing-floor-tiles-840x480.jpg";
 
+import friz from "./img/GL-D221ABCY-Refrigerators-Front-View-D-01-VF.jpg";
+import friz2 from "./img/GC-X257CSES-Refrigerators-Front-Light-On-Food-D-01.jpg";
+import friz3 from "./img/360_F_307209670_6q1j6Qy9CCajBzGYplpqfsX0FEJR4YB1.jpg";
+import friz4 from "./img/HRD-2423PRP-E.jpg";
+
+import ac from "./img/PS-Q13MNZF-air-conditioner-front-view-D-1.jpg";
+import ac2 from "./img/71EqxawZkPL._SX679_.jpg";
+import ac3 from "./img/Samsung-Air-Conditioners.jpg";
+
+import almirah from "./img/ndf-wooden-almirah-design.jpg";
+import almirah2 from "./img/8-affordable-almirah-sunmica-design-for-modern-bedrooms-shutterstock_1871122228-1200x700-compressed.jpg";
+import almirah3 from "./img/Ub69a875e2f064f2f8da5537c68ee30bda.jpg";
+
+import bedWood from "./img/cherry wood_thumb.jpg";
+import bedWood2 from "./img/brown-wooden-texture-flooring-background_53876-153336.jpg";
+import bedWood3 from "./img/763c9e84c922b38f71f33a37b6f2dc78.jpg";
+
 export const imagesData = [
   {
     name: "cilling",
@@ -219,5 +236,64 @@ export const imagesData = [
   {
     name: "marble2",
     image: marble2,
+  },
+  {
+    name: "refrigerator",
+    image: friz,
+  },
+  {
+    name: "refrigerator2",
+    image: friz2,
+  },
+  {
+    name: "refrigerator3",
+    image: friz3,
+  },
+  {
+    name: "refrigerator4",
+    image: friz4,
+  },
+  {
+    name: "ac",
+    image: ac,
+  },
+  {
+    name: "ac2",
+    image: ac2,
+  },
+  {
+    name: "ac3",
+    image: ac3,
+  },
+  {
+    name: "almirah",
+    image: almirah,
+  },
+  {
+    name: "almirah2",
+    image: almirah2,
+  },
+  {
+    name: "almirah3",
+    image: almirah3,
+  },
+  {
+    name: "bedWood",
+    image: bedWood,
+  },
+  {
+    name: "bedWood2",
+    image: bedWood2,
+  },
+  {
+    name: "bedWood3",
+    image: bedWood3,
+  },
+];
+
+export const appliencesImagesData = [
+  {
+    name: "refrigerator",
+    image: friz,
   },
 ];

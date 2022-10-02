@@ -3,12 +3,52 @@
   <head>
     <title>Metaverce</title>
     <meta charset="UTF-8" />
+    <style>
+      .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+      }
+    
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+        }
+    
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+    
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+    
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <div id="overlay">
+      
       <img src="./src/img/01.jpg" style="margin-top: 50px; height:100px; width:400px;"/>
       <h2>Use this key to move and <u>move mouse </u> to change direction</h2>
       <h4>Press <b>ESC</b> for exit and refresh to enter again</h4>
+      <div id="loader" style="display:none">
+        <center>
+          <div class="loader"></div>
+          <h1>Please wait...</h1>
+        </center>
+      </div>
       <button id="startButton" style="margin-top: 150px;">Enter Room</button>
     </div>
     <script src="./src/index.js"></script>

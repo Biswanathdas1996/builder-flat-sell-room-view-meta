@@ -8,13 +8,11 @@ import { box } from "./components/Box";
 import { floor } from "./components/Floor";
 import { gltfObject } from "./components/GltfObject";
 import { roomData, ifFurnished } from "./RoomData";
+import { refrigeratorObject } from "./components/Refrigerator";
 
-import bedWood from "./img/763c9e84c922b38f71f33a37b6f2dc78.jpg";
 import bedSheet from "./img/White-Background-Images-pics-hd-for-download-scaled.jpg";
-import friz from "./img/GL-D221ABCY-Refrigerators-Front-View-D-01-VF.jpg";
-import ac from "./img/PS-Q13MNZF-air-conditioner-front-view-D-1.jpg";
-import almirah from "./img/ndf-wooden-almirah-design.jpg";
-import basin from "./model/basin.gltf";
+
+// import basin from "./model/basin.gltf";
 import furnishedWall from "./img/floor2.jpg";
 import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
 
@@ -53,6 +51,10 @@ async function init() {
     backWall,
     rightWall,
     floorImg,
+    refrigerator,
+    ac,
+    almirah,
+    bedWood,
   } = await roomData();
 
   let furnished = await ifFurnished();
@@ -176,7 +178,6 @@ async function init() {
   // toilet
   gltfObject([6, 6, 6], [-240, -30, 260], toilet, scene);
 
-  console.log("----->appliances", furnished?.appliances);
   const appliances = furnished?.appliances;
 
   // ----------------------bed--------------------
@@ -188,9 +189,8 @@ async function init() {
   }
 
   // ----------------------Friz--------------------
-  if (appliances?.includes("refrigerator")) {
-    scene.add(wall([50, 120, 30], [70, 35, 290], friz));
-  }
+
+  refrigeratorObject(scene, refrigerator);
 
   // ----------------------AC--------------------
   if (appliances?.includes("ac")) {
@@ -199,18 +199,18 @@ async function init() {
 
   // ------------------------almirah ---------------------
   if (appliances?.includes("almirah")) {
-    scene.add(wall([30, 220, 130], [-140, 45, 220], almirah));
+    scene.add(wall([30, 170, 180], [-140, 60, 200], almirah));
   }
 
-  // toilet basin
-  if (appliances?.includes("toilet_basins")) {
-    gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
-  }
+  // // toilet basin
+  // if (appliances?.includes("toilet_basins")) {
+  //   gltfObject([6, 6, 6], [-305, -30, 120], basin, scene);
+  // }
 
-  // room basin
-  if (appliances?.includes("bedroom_basins")) {
-    gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
-  }
+  // // room basin
+  // if (appliances?.includes("bedroom_basins")) {
+  //   gltfObject([6, 6, 6], [-160, -30, 120], basin, scene);
+  // }
 
   if (furnished?.furnished) {
     // middle wall

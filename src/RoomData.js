@@ -1,5 +1,5 @@
 import { Data, imagesData } from "./Mock";
-
+import swal from "sweetalert";
 import Web3 from "web3";
 import ABI from "./Blockchain/ABI.json";
 import ADDRESS from "./Blockchain/Addess.json";
@@ -41,6 +41,10 @@ const getRoomNo = () => {
 };
 
 const getDataFromBlockchain = async (roomNo) => {
+  let loader = document.getElementById("loader");
+  loader.style.display = "block";
+  document.getElementById("startButton").style.display = "none";
+
   const tokenUri = await getTokenUri(roomNo);
   console.log("---tokenUri->", tokenUri);
   var requestOptions = {
@@ -51,6 +55,7 @@ const getDataFromBlockchain = async (roomNo) => {
     .then((response) => response.json())
     .then((result) => result)
     .catch((error) => error);
+  loader.style.display = "none";
   return tokenData;
 };
 
@@ -87,6 +92,18 @@ export const roomData = async () => {
     )?.image,
     floorImg: imagesData.find(
       (data) => data.name === tokenData?.metaverceData?.floorImg
+    )?.image,
+    refrigerator: imagesData.find(
+      (data) => data.name === tokenData?.metaverceData?.refrigerator?.image
+    )?.image,
+    ac: imagesData.find(
+      (data) => data.name === tokenData?.metaverceData?.ac?.image
+    )?.image,
+    almirah: imagesData.find(
+      (data) => data.name === tokenData?.metaverceData?.almirah?.image
+    )?.image,
+    bedWood: imagesData.find(
+      (data) => data.name === tokenData?.metaverceData?.bedWood?.image
     )?.image,
   };
 

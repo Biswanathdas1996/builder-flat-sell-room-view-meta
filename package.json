@@ -8,8 +8,12 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "@sweetalert/with-react": "^0.1.1",
     "gh-pages": "^4.0.0",
     "noisejs": "2.1.0",
+    "react": "^16.x.x",
+    "react-dom": "^16.x.x",
+    "sweetalert": "^2.1.2",
     "three": "0.120.1",
     "three-pointer-lock-controls": "1.0.0",
     "tone": "14.7.77",
