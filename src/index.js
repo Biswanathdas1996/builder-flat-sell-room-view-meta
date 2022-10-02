@@ -15,7 +15,6 @@ import furnishedWall from "./img/floor2.jpg";
 import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
 
 document.body.appendChild(VRButton.createButton(renderer));
-console.log("----->renderer", renderer);
 
 let controls;
 let moveForward = false;
