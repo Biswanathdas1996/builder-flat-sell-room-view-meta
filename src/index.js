@@ -11,8 +11,6 @@ import { roomData, ifFurnished } from "./RoomData";
 import { refrigeratorObject } from "./components/Refrigerator";
 
 import bedSheet from "./img/White-Background-Images-pics-hd-for-download-scaled.jpg";
-
-// import basin from "./model/basin.gltf";
 import furnishedWall from "./img/floor2.jpg";
 import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
 
