@@ -1,12 +1,9 @@
 import { Data, imagesData } from "./Mock";
-import swal from "sweetalert";
 import Web3 from "web3";
-import ABI from "./Blockchain/ABI.json";
-import ADDRESS from "./Blockchain/Addess.json";
+import ABI from "../../ui/src/CONTRACT-ABI/NFT.json";
+import ADDRESS from "../../ui/src/CONTRACT-ABI/Address.json";
 
-var InfuraNodeURL = `https://rinkeby.infura.io/v3/24022fda545f41beb59334bdbaf3ef32`;
-var WalletPrivateKey =
-  "33e8389993eea0488d813b34ee8d8d84f74f204c17b95896e9380afc6a514dc7";
+import { WalletPrivateKey, InfuraNodeURL } from "../../ui/src/config";
 
 const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
 const signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
