@@ -3,6 +3,10 @@ import Web3 from "web3";
 import ABI from "./Blockchain/ABI.json";
 import ADDRESS from "./Blockchain/Addess.json";
 
+import bedSheet from "./img/depositphotos_392505906-stock-photo-light-abstract-wall-background-copy.jpg";
+import furnishedWall from "./img/floor2.jpg";
+import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
+
 var InfuraNodeURL = `https://rinkeby.infura.io/v3/24022fda545f41beb59334bdbaf3ef32`;
 var WalletPrivateKey =
   "33e8389993eea0488d813b34ee8d8d84f74f204c17b95896e9380afc6a514dc7";
@@ -62,6 +66,11 @@ export const roomData = async () => {
   const roomNo = getRoomNo();
   const tokenData = await getDataFromBlockchain(roomNo);
   const roomUiData = {
+    staticImages: {
+      bedSheet,
+      furnishedWall,
+      falseCilling,
+    },
     topCilling: imagesData.find(
       (data) => data.name === tokenData?.metaverceData?.topCilling
     )?.image,

@@ -10,10 +10,6 @@ import { gltfObject } from "./components/GltfObject";
 import { roomData, ifFurnished } from "./RoomData";
 import { refrigeratorObject } from "./components/Refrigerator";
 
-import bedSheet from "./img/depositphotos_392505906-stock-photo-light-abstract-wall-background-copy.jpg";
-import furnishedWall from "./img/floor2.jpg";
-import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
-
 document.body.appendChild(VRButton.createButton(renderer));
 
 let controls;
@@ -38,6 +34,7 @@ document.addEventListener("click", function (e) {
 
 async function init() {
   const {
+    staticImages,
     topCilling,
     toiletWall,
     leftWall,
@@ -53,6 +50,8 @@ async function init() {
     almirah,
     bedWood,
   } = await roomData();
+
+  const { bedSheet, furnishedWall, falseCilling } = staticImages;
 
   let furnished = await ifFurnished();
 
@@ -81,9 +80,9 @@ async function init() {
     0.5,
     1000
   );
-  camera.position.x = 0;
-  camera.position.y = 150;
-  camera.position.z = -60;
+  camera.position.x = 150;
+  camera.position.y = 0;
+  camera.position.z = -120;
   renderer = new THREE.WebGLRenderer({ antialias: true });
 
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -155,7 +154,6 @@ async function init() {
   scene.add(wall([650, 280, 8], [0, 100, -325], frontWall));
   // Back wall
   scene.add(wall([650, 280, 8], [0, 100, 325], backWall));
-
   // Left wall
   scene.add(wall([8, 280, 650], [-325, 100, 0], leftWall));
   // Right wall
@@ -169,9 +167,8 @@ async function init() {
   scene.add(box([100, 120, 15], [-250, 100, 322], windowImageBack));
   // Left partition wall
   scene.add(wall([8, 280, 250], [-180, 100, 200], toiletWall));
-
+  // floor
   scene.add(floor(floorImg));
-
   // toilet
   gltfObject([6, 6, 6], [-240, -30, 260], toilet, scene);
 
@@ -186,7 +183,30 @@ async function init() {
   }
 
   // ----------------------Friz--------------------
+  // var loader = new THREE.FontLoader();
 
+  // loader.load(
+  //   "https://unpkg.com/three@0.77.0/examples/fonts/gentilis_bold.typeface.json",
+  //   function (font) {
+  //     var textGeo = new THREE.TextGeometry("H", {
+  //       font: font,
+  //       size: 13,
+  //       height: 10,
+  //       curveSegments: 12,
+
+  //       bevelThickness: 2,
+  //       bevelSize: 5,
+  //       bevelEnabled: true,
+  //     });
+
+  //     var textMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000 });
+
+  //     var mesh = new THREE.Mesh(textGeo, textMaterial);
+  //     mesh.position.set(-140, 60, 200);
+
+  //     scene.add(mesh);
+  //   }
+  // );
   refrigeratorObject(scene, refrigerator);
 
   // ----------------------AC--------------------
@@ -244,8 +264,8 @@ function update() {
     if (controls.isLocked === true) {
       const delta = (time - prevTime) / 1000;
       //sets speed values along the axis of which the camera is directed
-      velocity.x -= velocity.x * 3.0 * delta;
-      velocity.z -= velocity.z * 3.0 * delta;
+      velocity.x -= velocity.x * 4.0 * delta;
+      velocity.z -= velocity.z * 4.0 * delta;
       velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
       direction.z = Number(moveForward) - Number(moveBackward);
       direction.x = Number(moveRight) - Number(moveLeft);
