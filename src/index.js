@@ -10,7 +10,7 @@ import { gltfObject } from "./components/GltfObject";
 import { roomData, ifFurnished } from "./RoomData";
 import { refrigeratorObject } from "./components/Refrigerator";
 
-document.body.appendChild(VRButton.createButton(renderer));
+// document.body.appendChild(VRButton.createButton(renderer));
 
 let controls;
 let moveForward = false;
@@ -87,6 +87,9 @@ async function init() {
 
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
+  document.body.appendChild(VRButton.createButton(renderer));
+  renderer.xr.enabled = true;
+
   controls = new PointerLockControls(camera, renderer.domElement);
   controls.lock();
   scene.add(controls.getObject());
@@ -243,16 +246,11 @@ async function init() {
   play();
 }
 
-// simple render function
-function render() {
-  renderer.render(scene, camera);
-}
-
 function play() {
   //using the new setAnimationLoop method which means we are WebXR ready if need be
   renderer.setAnimationLoop(() => {
     update();
-    render();
+    renderer.render(scene, camera);
   });
 }
 

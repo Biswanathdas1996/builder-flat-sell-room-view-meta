@@ -2,21 +2,22 @@ import { Data, imagesData } from "./Mock";
 import Web3 from "web3";
 import ABI from "./Blockchain/ABI.json";
 import ADDRESS from "./Blockchain/Addess.json";
-
 import bedSheet from "./img/depositphotos_392505906-stock-photo-light-abstract-wall-background-copy.jpg";
 import furnishedWall from "./img/floor2.jpg";
 import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
 
-var InfuraNodeURL = `https://rinkeby.infura.io/v3/24022fda545f41beb59334bdbaf3ef32`;
-var WalletPrivateKey =
-  "33e8389993eea0488d813b34ee8d8d84f74f204c17b95896e9380afc6a514dc7";
+import { getConfigData } from "./getConfigaration";
+
+const configData = getConfigData();
+console.log("configData----------->", configData);
+
+var InfuraNodeURL = configData?.InfuraNodeURL;
+var WalletPrivateKey = configData?.WalletPrivateKey;
 
 const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
 const signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
 web3.eth.accounts.wallet.add(signer);
 const contract = new web3.eth.Contract(ABI, ADDRESS);
-
-console.log("-------------signer-->", signer);
 const getTokenUri = async (tokenId) => {
   const response = await contract.methods
     .tokenURI(tokenId)
