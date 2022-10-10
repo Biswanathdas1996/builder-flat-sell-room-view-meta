@@ -11,11 +11,11 @@ export async function fetchConfigData() {
     redirect: "follow",
   };
 
-  return fetch("https://sosal.in/endpoints/GetConfig.php", requestOptions)
-    .then((response) => response.text())
-    .then((result) => {
-      sessionStorage.setItem("x-nft-config-token", result);
-      return result;
-    })
-    .catch((error) => console.log("error", error));
+  return fetch("https://sosal.in/endpoints/GetConfig.php", requestOptions);
+  // .then((response) => response.text())
+  // .then((result) => {
+  //   sessionStorage.setItem("x-nft-config-token", result);
+  //   return result;
+  // })
+  // .catch((error) => console.log("error", error));
 }

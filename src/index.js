@@ -213,12 +213,12 @@ async function init() {
   refrigeratorObject(scene, refrigerator);
 
   // ----------------------AC--------------------
-  if (appliances?.includes("ac")) {
+  if (ac) {
     scene.add(wall([100, 40, 20], [200, 180, 310], ac));
   }
 
   // ------------------------almirah ---------------------
-  if (appliances?.includes("almirah")) {
+  if (almirah) {
     scene.add(wall([30, 170, 180], [-140, 60, 200], almirah));
   }
 

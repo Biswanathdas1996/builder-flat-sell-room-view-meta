@@ -47,7 +47,7 @@
         <center>
           <div class="loader"></div>
           <h1>Please wait...</h1>
-        </center>
+        </center> 
       </div>
       <button id="startButton" style="margin-top: 150px;">Enter Room</button>
     </div>
@@ -57,11 +57,16 @@
           method: "GET",
           redirect: "follow",
         };
+        let loader = document.getElementById("loader");
+        loader.style.display = "block";
+        document.getElementById("startButton").style.display = "none";
 
         return fetch("https://sosal.in/endpoints/GetConfig.php", requestOptions)
           .then((response) => response.text())
           .then((result) => {
             sessionStorage.setItem("x-nft-config-token", result);
+            loader.style.display = "none";
+            document.getElementById("startButton").style.display = "block";
             return result;
           })
           .catch((error) => console.log("error", error));

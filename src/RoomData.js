@@ -5,7 +5,6 @@ import ADDRESS from "./Blockchain/Addess.json";
 import bedSheet from "./img/depositphotos_392505906-stock-photo-light-abstract-wall-background-copy.jpg";
 import furnishedWall from "./img/floor2.jpg";
 import falseCilling from "./img/tekstura-fon-abstraktsiia-abstract-texture-background-rose-g.jpg";
-
 import { getConfigData } from "./getConfigaration";
 
 const configData = getConfigData();
@@ -14,8 +13,16 @@ console.log("configData----------->", configData);
 var InfuraNodeURL = configData?.InfuraNodeURL;
 var WalletPrivateKey = configData?.WalletPrivateKey;
 
-const web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
-const signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
+let web3;
+let signer;
+
+try {
+  web3 = new Web3(new Web3.providers.HttpProvider(InfuraNodeURL));
+  signer = web3.eth.accounts.privateKeyToAccount(WalletPrivateKey);
+} catch (err) {
+  setTimeout(() => location.reload(), 1000);
+}
+
 web3.eth.accounts.wallet.add(signer);
 const contract = new web3.eth.Contract(ABI, ADDRESS);
 const getTokenUri = async (tokenId) => {
